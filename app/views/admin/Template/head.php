@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title><?php echo 'Admin'." ".SITE_NAME;?></title>
+    <!-- Jquery -->
+    <script src="<?php echo SITE_URL;?>/public/dist/js/jquery.js"></script>
     <!---Stylesheet--->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo SITE_URL?>/public/dist/css/style.css">

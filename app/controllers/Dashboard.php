@@ -54,11 +54,11 @@
         
         public function login()
         {
-            if($_SERVER['REQUEST_METHOD']=='POST'){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
                 $err = 0;
                 
-                $data=[
+                $data = [
                     'email' => trim($_POST['email']),
                     'password' => trim($_POST['password']),
                     'email_err' => '',
@@ -66,20 +66,12 @@
                 ];
     
                 //vaildating the input field
-                if(empty($data['password'])){
-                    $err = 1;
-                    $data['password_err'] = 'Enter Password';
-                }
-    
+                
                 if(strlen($data['password'] < 6)){
                     $err = 1;
                     $data['password_err'] = 'Password is less than six';
                 }
     
-                if(empty($data['email'])){
-                    $err = 1;
-                    $data['email_err'] = 'Enter Email Address';
-                }
                 //vaildate if email exits
                 if(!$this->userModel->FindUserByEmail($data['email'])){
                     $err = 1;
@@ -89,10 +81,9 @@
                 //vaildate all 
                 if($err == 0){
                     $loggin = $this->userModel->login($data);
-                    if($loggin){
-                        $_SESSION['email'] = $data['email'];
-                        Redirect::to('Dashboard/');
-                    }
+                    $_SESSION['email'] = $data['email'];
+                    Redirect::to('Dashboard/');
+                    
                 }else{
                     $data['password_err'] = "Incorrect Email and Password";
                     $err = 1;
@@ -156,15 +147,17 @@
                 if($err == 0){
                     $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
                     $this->userModel->register($data);
-                   echo "<script>alert('User account register was Successfull !!!')</script>";
-
+                    Redirect::to('dashboard/setaccount');
+                    $_SESSION['message'] = "User account register was Successfull !!!";
+                    
                 }else{
                     $_SESSION['message'] = "User account was not Successfull Try Again !!!";
                     $this->view('admin/setaccount',$data);
                 }
     
     
-            }else{
+            }
+            else{
                 $data = [
                     'name'=> '',
                     'email' => '',
@@ -180,7 +173,7 @@
         public function logout()
         {
           $loggout = $this->userModel->logout();
-          if($loggin){
+          if($loggout){
               Redirect::to('dashboard/login');
           }
            

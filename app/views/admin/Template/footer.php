@@ -3,7 +3,7 @@
     <div class=" container center-align black-text">&copy;2020 Powered By PTech</div> 
   </div>
 </footer>
-<script src="<?php echo SITE_URL;?>/public/dist/js/jquery.js"></script>
+
 <script src="<?php echo SITE_URL;?>/public/dist/js/materialize.min.js"></script>
 <script src="<?php echo SITE_URL;?>/public/dist/js/app.js"></script>
 </body>

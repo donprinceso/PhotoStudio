@@ -8,22 +8,22 @@ class User extends Database{
        $this->sql = "SELECT id FROM users WHERE email = :email ";
        $this->query($this->sql);
        $this->bind(':email', $email);
+       $row = $this->Fetch();
        if($this->rowCount() > 0){
-          $row = $this->Fetch();
           return true;
        }else{
           return false;
        }
     }
 
-    public function register(array $data) :bool 
+    public function register(array $data):bool 
     {
-        $sql = "Insert Into users (name,email,password,token) Values (:name,:email:password,:token)";
-        $this->query($sql);
+        $this->sql = "INSERT INTO `users`( `name`, `email`, `password`, `token`) VALUES (:name,:email,:password,:token)";
+        $this->query($this->sql);
         $this->bind(':name',$data['name']);
         $this->bind(':email',$data['email']);
         $this->bind(':password',$data['password']);
-        $this->bind(':token',getTokel());
+        $this->bind(':token',generate_token());
         if ($this->execute())
         {
          return true;
@@ -31,19 +31,19 @@ class User extends Database{
         return false;
     }
 
-    public function login(array $data):bool
+    public function login(array $data)
     {
-        $sql = "select * from users where email= :email LIMIT=1";
-        $this->query($sql);
-        $this->bind();
-        $this->bind();
-        $row = $this->Fetch();
+        $this->sql = 'SELECT * FROM `users` WHERE email = :email AND password=:password';
+        $this->query($this->sql);
+        $this->bind(':email',$data['email']);
+        $this->bind(':password',$data['password']);
         if($this->rowCount() > 0){
+            $row = $this->Fetch();
             $hash = $row['password'];
             if(password_verify($data['password'],$hash)){
-                return $row;
+                return true;
             }
-            return false;
+                return false;
         }
         
     }

@@ -5,10 +5,11 @@
   <?php require_once 'Template/nav.php';?>
     <section class="">
       <h6 class="card-panel grey lighten-3 indigo-text">Acount Settings</h6>
+      <?php //echo $_SESSION['message']; ?>
        <div class="row">
          <div class="col s12 l5">
            <h5 class=" card-title indigo-text">create </h5>
-           <form action="<?php echo htmlspecialchars(SITE_URL."/dashboard/register"); ?>" method="post">
+           <form method="post" id="create_acc">
               <div class="input-field">
                 <input type="text" name="name" id="name" required>
                 <label for="name">Name</label>
@@ -37,7 +38,7 @@
                 </label>
               </p>
               <div class="input-field">
-                <button type="submit" class="btn right indigo">create</button>
+                <button type="submit" id="create_btn" name="create_user" class="btn right indigo" >create</button>
               </div>
            </form>
          </div>
@@ -46,11 +47,11 @@
             <h5 class=" card-title indigo-text">Delect Account </h5>
             <form action="" method="post">
                <div class="input-field">
-                 <input type="text" name="name" id="name" required>
+                 <input type="text" name="name" id="dname" required>
                  <label for="name">Name</label>
                </div>
                <div class="input-field">
-                 <input type="email" name="email" id="email" required>
+                 <input type="email" name="email" id="demail" required>
                  <label for="email">Email</label>
                </div>
                <div class="input-field">
