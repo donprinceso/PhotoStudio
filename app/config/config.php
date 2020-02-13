@@ -9,8 +9,8 @@
     define('SITE_URL','http://localhost/PhotoStudio');
 
     //setting the database drive
-    define('dbhost','localhost');
-    define('dbname','PS_database');
-    define('dbusername','root');
-    define('dbpassword','');
+    define('db_host','127.0.0.1');
+    define('db_user', 'root');
+    define('db_password', '');
+    define('db_name', 'ps');
     define('charaset','utf8');

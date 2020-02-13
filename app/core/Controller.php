@@ -7,7 +7,7 @@
         {
             if(file_exists(APPROOT.'/models/'.$model.'.php')){
                 require_once APPROOT.'/models/'.$model.'.php';
-                return $model;
+                return new $model;
             }
         }
 

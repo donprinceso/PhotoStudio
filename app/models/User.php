@@ -1,14 +1,15 @@
 <?php
 class User extends Database{
 
-    public function FindByEmail(string $email):bool
+    public $sql;
+
+    public function FindUserByEmail($email)
     {
-       $this->sql = 'SELECT id FROM users WHERE email = :email ';
+       $this->sql = "SELECT id FROM users WHERE email = :email ";
        $this->query($this->sql);
        $this->bind(':email', $email);
-       $this->execute();
-       $row = $this->Fetch();
        if($this->rowCount() > 0){
+          $row = $this->Fetch();
           return true;
        }else{
           return false;
@@ -45,6 +46,14 @@ class User extends Database{
             return false;
         }
         
+    }
+
+    public function logout()
+    {
+        if(session_unset()){
+            return true;
+        }
+        return false;
     }
 
     

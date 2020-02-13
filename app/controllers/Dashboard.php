@@ -1,8 +1,9 @@
 <?php
-use App\Models\User;
+ //use App\Models\User;
     class Dashboard extends Controller
     {
         protected $userModel;
+        
         public function __construct() {
 
         $this->userModel = $this->model('User');
@@ -34,69 +35,15 @@ use App\Models\User;
             $this->view('admin/request');
         }
 
-
         public function setaccount()
         {
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
-                $err = 0;
-    
-                $data = [
-                    'name'=> trim($_POST['name']),
-                    'email' => trim($_POST['email']),
-                    'password' => trim($_POST['password']),
-                    'name_err' => '',
-                    'email_err' => '',
-                    'password_err' => ''
-                ];
-    
-                 //vaildating the input field
-                if(empty($data['name'])){
-                    $err = 1;
-                    $data['name_err'] = 'Enter name';
-                }
-    
-                 if(empty($data['password'])){
-                    $err = 1;
-                    $data['password_err'] = 'Enter Password';
-                }
-    
-                if(strlen($data['password'] < 6)){
-                    $err = 1;
-                    $data['password_err'] = 'Password is less than six';
-                }
-    
-                if(empty($data['email'])){
-                    $err = 1;
-                    $data['email_err'] = 'Enter Email Address';
-                }
-                //vaildate if email exits
-                if($this->userModel->FindByEmail($data['email'])){
-                    $err = 1;
-                    $data['email_err'] = 'Email Already Exit';
-                }
-                if($err == 0){
-                    $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
-                    $this->userModel->register($data);
-                    $_SESSION['message'] = "User account Create Successfull!!!";
-
-                }else{
-                    $_SESSION['message'] = "User account was not Successfull Try Again !!!";
-                    $this->view('admin/setaccount',$data);
-                }
-    
-    
-            }else{
-                $data = [
-                    'name'=> '',
-                    'email' => '',
-                    'password' => '',
-                    'name_err' => '',
-                    'email_err' => '',
-                    'password_err' => ''
-                ];
-                $this->view('admin/setaccount',$data);
-            }
+            $data = [
+                'email' => '',
+                'password' => '',
+                'name_err' => '',
+                'email_err' => '',
+                'password_err' => ''
+            ];
             $this->view('admin/setaccount',$data);
         }
     
@@ -134,10 +81,10 @@ use App\Models\User;
                     $data['email_err'] = 'Enter Email Address';
                 }
                 //vaildate if email exits
-                // if(!$this->userModel->FindByEmail($data['email'])){
-                //     $err = 1;
-                //     $data['email_err'] = 'Email Not Found';
-                // }
+                if(!$this->userModel->FindUserByEmail($data['email'])){
+                    $err = 1;
+                    $data['email_err'] = 'Email Not Found';
+                }
     
                 //vaildate all 
                 if($err == 0){
@@ -168,12 +115,75 @@ use App\Models\User;
     
         public function register()
         {
-           
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+                $err = 0;
+    
+                $data = [
+                    'name'=> trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'name_err' => '',
+                    'email_err' => '',
+                    'password_err' => ''
+                ];
+    
+                 //vaildating the input field
+                if(empty($data['name'])){
+                    $err = 1;
+                    $data['name_err'] = 'Enter name';
+                }
+    
+                 if(empty($data['password'])){
+                    $err = 1;
+                    $data['password_err'] = 'Enter Password';
+                }
+    
+                if(strlen($data['password'] < 6)){
+                    $err = 1;
+                    $data['password_err'] = 'Password is less than six';
+                }
+    
+                if(empty($data['email'])){
+                    $err = 1;
+                    $data['email_err'] = 'Enter Email Address';
+                }
+                //vaildate if email exits
+                if($this->userModel->FindUserByEmail($data['email'])){
+                    $err = 1;
+                    $data['email_err'] = 'Email Already Exit';
+                }
+                if($err == 0){
+                    $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
+                    $this->userModel->register($data);
+                   echo "<script>alert('User account register was Successfull !!!')</script>";
+
+                }else{
+                    $_SESSION['message'] = "User account was not Successfull Try Again !!!";
+                    $this->view('admin/setaccount',$data);
+                }
+    
+    
+            }else{
+                $data = [
+                    'name'=> '',
+                    'email' => '',
+                    'password' => '',
+                    'name_err' => '',
+                    'email_err' => '',
+                    'password_err' => ''
+                ];
+                $this->view('admin/setaccount',$data);
+            }
         }
     
         public function logout()
         {
-            $this->view('admin/login');
+          $loggout = $this->userModel->logout();
+          if($loggin){
+              Redirect::to('dashboard/login');
+          }
+           
         }
 
     }

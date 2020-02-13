@@ -31,7 +31,7 @@ class Router{
         $this->param = $url ? array_values($url) : [];
 
         // using the callback function to get the param
-        call_user_func([$this->controller,$this->method],$this->param);
+        call_user_func_array([$this->controller,$this->method],$this->param);
 
     }
     

@@ -8,19 +8,19 @@
        <div class="row">
          <div class="col s12 l5">
            <h5 class=" card-title indigo-text">create </h5>
-           <form action="<?php echo htmlspecialchars(SITE_URL."/dashboard/setaccount") ?>" method="post">
+           <form action="<?php echo htmlspecialchars(SITE_URL."/dashboard/register"); ?>" method="post">
               <div class="input-field">
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" required>
                 <label for="name">Name</label>
                 <span class="validate materialize-red-text"><?php echo($data['name_err']); ?></span>
               </div>
               <div class="input-field">
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
                 <label for="email">Email</label>
                 <span class="validate materialize-red-text"><?php echo($data['email_err']); ?></span>
               </div>
               <div class="input-field">
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
                 <label for="password">Password</label>
                 <span class="validate materialize-red-text"><?php echo($data['password_err']); ?></span>
               </div>
@@ -46,11 +46,11 @@
             <h5 class=" card-title indigo-text">Delect Account </h5>
             <form action="" method="post">
                <div class="input-field">
-                 <input type="text" name="name" id="name">
+                 <input type="text" name="name" id="name" required>
                  <label for="name">Name</label>
                </div>
                <div class="input-field">
-                 <input type="email" name="email" id="email">
+                 <input type="email" name="email" id="email" required>
                  <label for="email">Email</label>
                </div>
                <div class="input-field">
