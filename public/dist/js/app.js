@@ -8,7 +8,7 @@ $(document).ready(function(){
     $('.dropdown-trigger').dropdown();
 
 // user account register form ajax call
-    $('#create_acc').on('submit',function(event){
+    $('#create_btn').click(function(event){
         event.preventDefault();
         var name = $('#name').val();
         var email = $('#email').val();
@@ -16,7 +16,7 @@ $(document).ready(function(){
         if(name != '' && email != '' && pass != ''){
             var create = $('#create_acc').serialize();
             $.ajax({
-                url:'Photostudio/dashboard/register',
+                url:'<?php echo htmlspecialchars(SITE_URL."/dashboard/") ;?>'+"register",
                 type:'POST',
                 data: create,
                 success:function(){

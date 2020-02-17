@@ -38,7 +38,7 @@
                 </label>
               </p>
               <div class="input-field">
-                <button type="submit" id="create_btn" name="create_user" class="btn right indigo" >create</button>
+                <button type="button" id="create_btn" name="create_user" class="btn right indigo" >create</button>
               </div>
            </form>
          </div>
