@@ -4,7 +4,7 @@
     <div class="row">
         <div class=" card col s12 l5 offset-l3">
                 <h5 class="card-panel center indigo white-text card-title">Admin Login</h5>
-                <form action="<?php echo htmlspecialchars(SITE_URL."/dashboard/login") ;?>" method="post">
+                <form action="<?php echo htmlspecialchars(SITE_URL."/users/login") ;?>" method="post">
                     
                     <br>
                     <div class="input-field">

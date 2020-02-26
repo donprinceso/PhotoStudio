@@ -3,7 +3,7 @@
     <ul id="mobile-nav" class=" hide-on-med-and-down right">
         <li><a href="<?php echo SITE_URL."/Dashboard/account" ?>">
             <!-- <?php if(!$_SESSION['email']){
-                Redirect::to('dashboard/login');
+                Redirect::to('users/login');
             }else{
                 echo $_SESSION['email'];
             } ?> -->

@@ -48,6 +48,29 @@ class User extends Database{
         
     }
 
+    public function edit(array $data)
+    {
+        $this->sql = "UPDATE `users` SET 
+        `name`=:name,
+        `email`= :email,
+        `password`= :password,
+         WHERE 1";
+         $this->query($this->sql);
+         $this->bind();
+    }
+
+    public function destory($email)
+    {
+        $this->sql = 'DELETE FROM `users` WHERE email = :email ';
+        $this->query($this->sql);
+        $this->bind(':email', $email);
+        if($this->execute()){
+           return true;
+        }else{
+           return false;
+        }
+    }
+
     public function logout()
     {
         if(session_unset()){

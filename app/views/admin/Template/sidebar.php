@@ -14,6 +14,7 @@
             </ul>
         </li>
         <li><a href="<?php echo SITE_URL."/Dashboard/request" ?>">Request</a></li>
+        <li><a href="">Contant Message</a></li>
     </ul>
 </div>
 
