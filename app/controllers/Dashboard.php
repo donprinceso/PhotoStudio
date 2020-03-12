@@ -3,16 +3,25 @@
     class Dashboard extends Controller
     {
         protected $userModel;
+        protected $BookModel;
         
         public function __construct() {
 
         $this->userModel = $this->model('User');
+        $this->BookModel = $this->model('Booking');
 
         }
         
         public function index()
         {
-            $this->view('admin/index');
+            $data = $this->BookModel->List();
+            $this->view('admin/index',$data);
+        }
+
+        public function Find($id)
+        {
+            $data = $this->BookModel->FindById($id);
+            echo $data;
         }
 
         public function reserv()

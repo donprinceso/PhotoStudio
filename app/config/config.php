@@ -14,3 +14,6 @@
     define('db_password', '');
     define('db_name', 'ps');
     define('charaset','utf8');
+
+    define('APPROVED',1);
+    define('NotAPPOVERD',0);

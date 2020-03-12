@@ -82,62 +82,28 @@
         </tr>
       </thead>
       <tbody>
+      <?php
+      if( Count($data) > 0):
+      foreach($data as $booking):
+      ?>
         <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>Photography, Editing</td>
+          <td><?php echo $booking['user_name'];?></td>
+          <td><?php echo ($booking['user_email']);?></td>
+          <td><?php echo $booking['user_phone'];?></td>
+          <td><?php echo $booking['user_loation'];?></td>
+          <td><?php echo $booking['event_select'];?></td>
+          <td><?php echo $booking['date_select'];?></td>
+          <td><?php echo $booking['services'];?></td>
           <td>
-            <a href="#" class="btn red">Reject</a>
+            <a href="<?php echo $booking['id'] ? SITE_URL.'/dashboard/find/'.$booking['id']: ''; ?>" class="btn red">Reject</a>
             <a href="#" class="btn green">Acesst</a>
-            <a href="#" class="btn grey darken-1">view</a>
+            <a href="<?php SITE_URL.'/dashboard/find/'.$booking['id'];?>" class="btn grey darken-1">view</a>
           </td>
         </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>Photography, Editing</td>
-          <td>
-            <a href="#" class="btn red">Reject</a>
-            <a href="#" class="btn green">Acesst</a>
-            <a href="#" class="btn grey darken-1">view</a>
-          </td>
-        </tr>
-        <tr>
-          <td>James Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>Photography, Editing</td>
-          <td>
-            <a href="#" class="btn red">Reject</a>
-            <a href="#" class="btn green">Acesst</a>
-            <a href="#" class="btn grey darken-1">view</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>Photography, Editing</td>
-          <td>
-            <a href="#" class="btn red">Reject</a>
-            <a href="#" class="btn green">Acesst</a>
-            <a href="#" class="btn grey darken-1">view</a>
-          </td>
-        </tr>
+        <?php endforeach ?>
+      <?php else: ?>
+      <h5 class="title materialize-red-text center-align">The Is no Data in the Database Try Again Later</h5>
+      <?php endif;?>
       </tbody>
     </table>
   </section>

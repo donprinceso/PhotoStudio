@@ -29,15 +29,15 @@
                     $data['password_err'] = 'Password is less than six';
                 }
     
-                //vaildate if email exits
+                //validate if email exits
                 if(!$this->userModel->FindUserByEmail($data['email'])){
                     $err = 1;
                     $data['email_err'] = 'Email Not Found';
                 }
     
-                //vaildate all 
+                //validate all
                 if($err == 0){
-                    $loggin = $this->userModel->login($data);
+                    $logging = $this->userModel->login($data);
                     $_SESSION['email'] = $data['email'];
                     Redirect::to('Dashboard/');
                     
@@ -136,14 +136,14 @@
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
-            $err = 0;
+            $error = 0;
             $data = [
                 'name'=>trim($_POST['name']),
                 'email'=>trim($_POST['email']),
                 'err_message' => ''
             ];
             if(empty($data['name'])){
-                $err = 1;
+                $error = 1;
                 $data['err_message'] = "enter Name";
             }
             if($this->userModel->FindUserByEmail($data['email'])){
@@ -152,7 +152,7 @@
                 Redirect::to('dashboard/setaccount');
             }
             else{
-                $err = 1;
+                $error = 1;
                 $data['err_message'] = "Email dont exit Try Again";
                 Redirect::to('dashboard/setaccount');
             }
@@ -161,4 +161,13 @@
             Redirect::to('dashboard/setaccount');
         }
     }
+
+     /**
+      *
+      */
+     public function userList()
+     {
+         $users = $this->userModel->getUser();
+         echo($users);
+     }
  }
