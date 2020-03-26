@@ -88,15 +88,15 @@
       ?>
         <tr>
           <td><?php echo $booking['user_name'];?></td>
-          <td><?php echo ($booking['user_email']);?></td>
+          <td><?php echo $booking['user_email'];?></td>
           <td><?php echo $booking['user_phone'];?></td>
           <td><?php echo $booking['user_loation'];?></td>
           <td><?php echo $booking['event_select'];?></td>
           <td><?php echo $booking['date_select'];?></td>
           <td><?php echo $booking['services'];?></td>
           <td>
-            <a href="<?php echo $booking['id'] ? SITE_URL.'/dashboard/find/'.$booking['id']: ''; ?>" class="btn red">Reject</a>
-            <a href="#" class="btn green">Acesst</a>
+            <a href="<?php echo $booking['id'] ? SITE_URL.'/dashboard/find/'.$booking['id']: ''; ?>" class="btn red lighten-3">Reject</a>
+            <a href="#" class="btn darken-1">Acesst</a>
             <a href="<?php SITE_URL.'/dashboard/find/'.$booking['id'];?>" class="btn grey darken-1">view</a>
           </td>
         </tr>

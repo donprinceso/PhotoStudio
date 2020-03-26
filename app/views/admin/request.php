@@ -20,6 +20,10 @@
       <thead
         class="grey lighten-3 indigo-text                                                                                                                                                                                                                                                 "
       >
+      <?php 
+        if(count($data) > 0):
+          foreach ($data as $request):
+      ?>
         <tr>
           <th>Names</th>
           <th>Email Address</th>
@@ -30,54 +34,24 @@
         </tr>
       </thead>
       <tbody>
+     
         <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
+       
+          <td><?php echo $request['user_name']; ?></td>
+          <td><?php echo $request['user_email']; ?></td>
+          <td><?php echo $request['user_phone']; ?>9</td>
+          <td><?php echo $request['event_select']; ?></td>
+          <td><?php echo $request['date_select']; ?></td>
           <td>
                 <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn  darken-1">Process</a>
+                <a href="<?php echo $request['id'] ? SITE_URL.'/dashboard/processById/'. $request['id']:'' ;?>" class="btn  darken-1">Process</a>
                 <a href="#" class="btn red lighten-3">Delect</a>
           </td>
         </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-                <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn  darken-1">Process</a>
-                <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
-        <tr>
-          <td>James Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-                <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn  darken-1">Process</a>
-                <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-            <a href="#" class="btn grey darken-1">view</a>
-            <a href="#" class="btn  darken-1">Process</a>
-            <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
+        <?php endforeach;?>
+          <?php else:?>
+          <h5 class=" center-align container title validate">Nothing is Listed Here </h5 >
+          <?php endif ?>
       </tbody>
       <tfoot></tfoot>
     </table>

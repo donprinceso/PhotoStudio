@@ -11,10 +11,27 @@
         $this->BookModel = $this->model('Booking');
 
         }
-        
+
+        /**
+         *
+         */
+        public function getType($type){
+            if($type == APPROVED){
+                return APPROVED;
+            }elseif ($type == NotAPPOVERD){
+                return NotAPPOVERD;
+            }
+        }
+
+        /**
+         *
+         */
         public function index()
         {
-            $data = $this->BookModel->List();
+            //$data = $this->BookModel->List();
+           // if($this->getType(NotAPPOVERD)){
+                $data = $this->BookModel->notApproved(NotAPPOVERD);
+           // }
             $this->view('admin/index',$data);
         }
 
@@ -26,7 +43,8 @@
 
         public function reserv()
         {
-            $this->view('admin/reservation');
+            $data = $this->BookModel->List();
+            $this->view('admin/reservation',$data);
         }
 
         public function booking()
@@ -36,12 +54,14 @@
 
         public function process()
         {
-            $this->view('admin/process');
+            $data = $this->BookModel->approved(APPROVED);
+            $this->view('admin/process',$data);
         }
 
         public function request()
         {
-            $this->view('admin/request');
+            $data = $this->BookModel->notApproved(NotAPPOVERD);
+            $this->view('admin/request',$data);
         }
 
         public function setaccount()
@@ -62,10 +82,15 @@
         {
             $this->view('admin/change');
         }
-        
-        
-    
-       
+
+        public function processById($id)
+        {
+            if(getType(APPROVED)){
+                $this->BookModel->process($id);
+                $this->request();
+            }
+            
+        }
     
         public function logout()
         {

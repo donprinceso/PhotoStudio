@@ -67,7 +67,7 @@
                    </label>
                </p>
                <div class="input-field center">
-                   <button class="btn btn-large">Submit</button>
+                   <button class="btn btn-large indigo">Submit</button>
                </div>
            </form>
        </div>

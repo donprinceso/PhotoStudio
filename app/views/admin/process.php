@@ -32,53 +32,25 @@
       </thead>
       <tbody>
         <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
+        <?php 
+        if(count($data) > 0):
+          foreach ($data as $process):
+      ?>
+          <td><?php echo $process['user_name']; ?></td>
+          <td><?php echo $process['user_email']; ?></td>
+          <td><?php echo $process['user_phone']; ?>9</td>
+          <td><?php echo $process['user_loation']; ?></td>
+          <td><?php echo $process['event_select']; ?></td>
+          <td><?php echo $process['date_select']; ?></td>
           <td>
-                <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn red lighten-3">Delect</a>
+                <a href="<?php echo $process['id'] ? SITE_URL.'/dashboard/find/'. $process['id']:'' ;?>" class="btn grey darken-1">view</a>
+                <a href="<?php echo $process['id'] ? SITE_URL.'/dashboard/remove/'. $process['id']:'' ;?>" class="btn red lighten-3">Delect</a>
           </td>
         </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-                <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
-        <tr>
-          <td>James Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-                <a href="#" class="btn grey darken-1">view</a>
-                <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Hanry Pack</td>
-          <td>HanryP@gmail.com</td>
-          <td>09876543209</td>
-          <td>Golding Hote and Event Center Aba,Abia State</td>
-          <td>Per Wedding Shot</td>
-          <td>23/07/2020</td>
-          <td>
-            <a href="#" class="btn grey darken-1">view</a>
-            <a href="#" class="btn red lighten-3">Delect</a>
-          </td>
-        </tr>
+          <?php endforeach;?>
+          <?php else:?>
+          <p>Nothing is Listed Here </p>
+          <?php endif ?>
       </tbody>
       <tfoot></tfoot>
     </table>

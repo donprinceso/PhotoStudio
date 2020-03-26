@@ -62,10 +62,30 @@
 
      /**
       *setting if the Reservation is APPROVED or NOT
+      * @param int $approved
+      * @return
       */
-     public function set_approved(){
+     public function notApproved($approved = 0){
+        $this->sql = "SELECT * FROM {$this->table} WHERE appoverd = :approved";
+        $this->query($this->sql);
+        $this->bind(':approved',$approved);
+        if ($this->rowCount() >= 0){
+            $row = $this->FetchAll();
+            return $row;
+        }
+    }
 
-        
+     /**
+      *
+      */
+     public function approved($approved = 1){
+         $this->sql = "SELECT * FROM {$this->table} WHERE appoverd = :approved";
+         $this->query($this->sql);
+         $this->bind(':approved',$approved);
+         if($this->rowCount()>= 0){
+            $row = $this->FetchAll();
+            return $row;
+         }
     }
     /**
      * getting the List of all the Reservation that is be made
@@ -87,6 +107,16 @@
 
     }
 
+    public function process($id){
 
+        $this->sql = "UPDATE {$this->table} SET appoverd = :approved WHERE id = :id";
+        $this->query($this->sql);
+        $this->bind(':id',$id);
+        $this->bind(':approved',APPROVED);
+        if($this->execute()){
+            return true;
+        }
+
+    }
 
  }
